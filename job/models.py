@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 
 # Create your models here.
@@ -23,9 +24,16 @@ class Job(models.Model):
     salary = models.IntegerField(default=1)
     experience = models.IntegerField(default=0)
     gender = models.CharField(max_length=50, choices=GENDET_TYPE)
-    #category
-
+    category = models.ForeignKey('Categories', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
+
+class Categories(models.Model):
+    name = models.CharField(max_length=25)
+
+
+    def __str__(self):
+        return self.name
 
